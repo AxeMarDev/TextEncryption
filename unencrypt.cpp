@@ -103,7 +103,6 @@ public:
 			}
 		}
 		message = transribe;
-		cout << transribe << endl;
 	}
 	void cutString()
 	{
