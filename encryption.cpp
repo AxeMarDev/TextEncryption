@@ -36,11 +36,10 @@ public:
 
 class encrypt // encryption  class that will hold every encrytpion function
 {
-	string inputed;
-	string outputed;
-	string key;
-	vector<char> transfer_stal;
-	vector<float> converted_ctf;
+	string inputed;				 // user inputed message
+	string key;					 // user inputed encryption key
+	vector<char> transfer_stal;	 // An array of Chars derived from a string
+	vector<float> converted_ctf; // An array of Floats derived from an array of chars
 	string final1;
 
 public:
