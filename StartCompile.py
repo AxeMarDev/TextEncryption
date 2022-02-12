@@ -1,7 +1,7 @@
 import os
 
-os.system("g++ -o compile .encryption.cpp")
-os.system("g++ -o compile2 .unencrypt.cpp")
-os.system("g++ -o maincompile .interface.cpp")
-os.system("./maincompile")
+os.system("g++ -o encryptText encryption.cpp")
+os.system("g++ -o un_encryptText unencrypt.cpp")
+os.system("g++ -o SecretMachine interface.cpp")
+os.system("./SecretMachine")
 

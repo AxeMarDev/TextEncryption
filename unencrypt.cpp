@@ -221,8 +221,9 @@ int main()
 	uncrypt.translate();
 	uncrypt.cutString();
 	uncrypt.stofhelp();
+
 	uncrypt.unencryptor();
-	// uncrypt.print();
 	uncrypt.itochar();
 	uncrypt.getter();
+	return 0;
 }

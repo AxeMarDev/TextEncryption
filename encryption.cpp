@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class operators
+class operators // posible encryption operation
 {
 public:
 	static float divide(float target, float divideby)
@@ -34,55 +34,57 @@ public:
 	}
 };
 
-class encrypt
+class encrypt // encryption  class that will hold every encrytpion function
 {
-private:
 	string inputed;
 	string outputed;
 	string key;
+	vector<char> transfer_stal;
+	vector<float> converted_ctf;
+	string final1;
 
 public:
-	void setterE(string key1)
+	void getter()
 	{
+		cout << final1 << endl;
+		ofstream outfile;
+		outfile.open("output.smtxt");
+		outfile << final1 << endl;
+	}
 
-		key = key1;
-	}
-	string getter()
-	{
-		outputed = inputed;
-		return outputed;
-	}
-	void setter(string input1)
+	void setter(string input1, string key1)
 	{
 		inputed = input1;
+		key = key1;
 	}
 
-	void transfer_sta(string inputed, vector<char> &trasfer_sta)
+	void transfer_sta()
 	{
 
 		for (int i = 0; i < inputed.size(); i++)
 		{
-			trasfer_sta.push_back(inputed[i]);
+			transfer_stal.push_back(inputed[i]);
 		}
 	}
 
-	void convert_cti(vector<char> &trasfer_sta, vector<float> &convert_cti)
+	void convert_ctil()
 	{
 
-		for (int i = 0; i < trasfer_sta.size(); i++)
+		for (int i = 0; i < transfer_stal.size(); i++)
 		{
-			float converted = trasfer_sta[i] - 0;
+			float converted = transfer_stal[i] - 0;
 
-			convert_cti.push_back(converted);
+			converted_ctf.push_back(converted);
 		}
 	}
 
-	void encryptor(vector<float> &transfer_cti)
+	void encryptor()
 	{
 
 		char operation;
 		float operateby;
-		for (int i = 0; i < transfer_cti.size(); i++)
+
+		for (int i = 0; i < converted_ctf.size(); i++)
 		{
 
 			for (int j = 0; j < key.size(); j = j + 2)
@@ -95,23 +97,23 @@ public:
 
 				case 'A':
 				case 'a':
-					transfer_cti[i] = operators::divide(transfer_cti[i], operateby);
+					converted_ctf[i] = operators::divide(converted_ctf[i], operateby);
 					break;
 				case 'B':
 				case 'b':
-					transfer_cti[i] = operators::multiply(transfer_cti[i], operateby);
+					converted_ctf[i] = operators::multiply(converted_ctf[i], operateby);
 					break;
 				case 'C':
 				case 'c':
-					transfer_cti[i] = operators::add(transfer_cti[i], operateby);
+					converted_ctf[i] = operators::add(converted_ctf[i], operateby);
 					break;
 				case 'D':
 				case 'd':
-					transfer_cti[i] = operators::subtract(transfer_cti[i], operateby);
+					converted_ctf[i] = operators::subtract(converted_ctf[i], operateby);
 					break;
 				case 'E':
 				case 'e':
-					transfer_cti[i] = operators::power(transfer_cti[i], operateby);
+					converted_ctf[i] = operators::power(converted_ctf[i], operateby);
 					break;
 				default:
 
@@ -120,111 +122,97 @@ public:
 			}
 		}
 	}
-	static void transcribe(string &transribe)
+
+	void transcribe()
 	{
-		for (int i = 0; i < transribe.size(); i++)
+		for (int i = 0; i < final1.size(); i++)
 		{
-			char postition = transribe[i];
+			char postition = final1[i];
 			switch (postition)
 			{
 			case '0':
-				transribe[i] = '~';
+				final1[i] = '~';
 				break;
 			case '1':
-				transribe[i] = '=';
+				final1[i] = '=';
 				break;
 			case '2':
-				transribe[i] = '%';
+				final1[i] = '%';
 				break;
 			case '3':
-				transribe[i] = '*';
+				final1[i] = '*';
 				break;
 			case '4':
-				transribe[i] = '#';
+				final1[i] = '#';
 				break;
 			case '5':
-				transribe[i] = '@';
+				final1[i] = '@';
 				break;
 			case '6':
-				transribe[i] = '+';
+				final1[i] = '+';
 				break;
 			case '7':
-				transribe[i] = '^';
+				final1[i] = '^';
 				break;
 			case '8':
-				transribe[i] = '(';
+				final1[i] = '(';
 				break;
 			case '9':
-				transribe[i] = ')';
+				final1[i] = ')';
 				break;
 			case '-':
-				transribe[i] = '?';
+				final1[i] = '?';
 				break;
 			case '.':
-				transribe[i] = '>';
+				final1[i] = '>';
 				break;
 			case '&':
-				transribe[i] = '&';
+				final1[i] = '&';
 				break;
 			case ']':
-				transribe[i] = ']';
+				final1[i] = ']';
 				break;
 			default:
-				transribe[i] = '[';
+				final1[i] = '[';
 			}
 		}
+	}
+
+	void messageCapsule()
+	{
+
+		final1 = "[";
+		cout << "ecrypted message is: ";
+		for (int i = 0; i < converted_ctf.size(); i++)
+		{
+			// cout << converted_ctf[i] << "&";
+			string float_string(to_string(converted_ctf[i]));
+			final1 += float_string;
+
+			final1 += "&";
+		}
+		final1 += "]";
 	}
 };
 
 int main()
 {
-	system("touch output.txt");
-	// setup string input
-
+	system("touch output.smtxt");
 	encrypt stringenc;
-	string userInput;
-	cout << endl;
-	cout << "please inputed a string of characters to encrypt: ";
+	string userInput, keyE;
+	system("clear");
+	cout << "please inpute a string of characters to encrypt: ";
 	getline(cin, userInput);
-	stringenc.setter(userInput);
-	vector<char> transfer_sta(0);
-	stringenc.transfer_sta(userInput, transfer_sta);
-
-	// convert vector elements to floating point numbers
-
-	vector<float> converted_ctf(0);
-	stringenc.convert_cti(transfer_sta, converted_ctf);
-
-	// encript key
-	cout << endl;
-	cout << "please input a encryption key( one letter A-D followed by digit 1-9 ex: A2B3D7A9E6): " << endl;
-	cout << "( A cannot be followed by a odd number):";
-	string keyE;
+	system("clear");
+	cout << "please input a encryption key( one letter A-D followed by digit 1-9 ex: ";
 	getline(cin, keyE);
-	cout << endl;
-	stringenc.setterE(keyE);
-
-	// ecriptProcess
-
-	stringenc.encryptor(converted_ctf);
-
-	// prin
-	string final1 = "[";
-	cout << "ecrypted message is: ";
-	for (int i = 0; i < converted_ctf.size(); i++)
-	{
-		// cout << converted_ctf[i] << "&";
-		string float_string(to_string(converted_ctf[i]));
-		final1 += float_string;
-
-		final1 += "&";
-	}
-	final1 += "]";
-	stringenc.transcribe(final1);
-	cout << final1 << endl;
-	cout << endl;
-
-	ofstream outfile;
-	outfile.open("output.txt");
-	outfile << final1 << endl;
+	stringenc.setter(userInput, keyE);
+	stringenc.transfer_sta();
+	stringenc.convert_ctil();
+	stringenc.encryptor();
+	system("clear");
+	stringenc.messageCapsule();
+	stringenc.transcribe();
+	stringenc.getter();
+	return 0;
 }
