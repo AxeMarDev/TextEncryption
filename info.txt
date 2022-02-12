@@ -1,0 +1,11 @@
+Welcome to secretmachine 1.0.1
+
+before starting the program, make sure to have python installed
+
+the following are the steps:
+
+1. open terminal on mac os
+2. run command "cd " and drag downloaded folder into terminal
+3. run command "python .compile.py"
+
+
