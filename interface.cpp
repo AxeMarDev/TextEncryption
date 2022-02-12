@@ -17,7 +17,9 @@ int main()
 	{
 
 		system("./compile");
-	} else {
+	}
+	else
+	{
 
 		cout << "not an argument, did you mean 'request.incrypt'?" << endl;
 	}

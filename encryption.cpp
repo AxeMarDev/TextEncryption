@@ -30,7 +30,7 @@ public:
 
 	static float power(float target, float divideby)
 	{
-		return pow(target, divideby);
+		return target * 2;
 	}
 };
 
@@ -131,7 +131,7 @@ public:
 				transribe[i] = '~';
 				break;
 			case '1':
-				transribe[i] = '%';
+				transribe[i] = '=';
 				break;
 			case '2':
 				transribe[i] = '%';
@@ -216,6 +216,7 @@ int main()
 		// cout << converted_ctf[i] << "&";
 		string float_string(to_string(converted_ctf[i]));
 		final1 += float_string;
+
 		final1 += "&";
 	}
 	final1 += "]";
